@@ -37,44 +37,85 @@
         <!-- Ajoutez des exemples de votre travail ici, avec des liens vers des échantillons ou des démonstrations. -->
     </section>
 	<section>
-    <label for="genre">Genre de Musique :</label>
-<select id="genre" name="genre">
-    <option value="rock">Rock</option>
-    <option value="pop">Pop</option>
-    <option value="hip-hop">Hip-Hop</option>
-    <option value="acoustique">Acoustique</option>
-    <option value="electro">Electro</option>
-    <option value="autre">Autre</option>
-    <!-- Ajoutez d'autres genres -->
-</select><br>
+    <title>Formulaire de Commande de Mix</title>
+    <script>
+        function calculerDevis() {
+            // Obtenez les valeurs sélectionnées par l'utilisateur
+            var genre = document.getElementById("genre").value;
+            var duree = parseFloat(document.getElementById("duree").value);
+            var nombrePistes = parseInt(document.getElementById("nombrePistes").value);
+            var qualiteMix = parseFloat(document.getElementById("qualiteMix").value);
+            var pisteVoix = document.getElementById("pisteVoix").value;
+            var nombreChanteurs = parseInt(document.getElementById("nombreChanteurs").value);
 
-<label for="duree">Durée du Morceau (en minutes) :</label>
-<input type="number" id="duree" name="duree"><br>
+            // Effectuez le calcul du devis en fonction des paramètres
+            var tarifGenre = 15; // Tarif par défaut pour les genres autres que Pop et Hip Hop
+            if (genre === "Pop" || genre === "Hip-Hop") {
+                tarifGenre = 10; // Tarif réduit pour Pop et Hip Hop
+            }
 
-<label for="nombrePistes">Nombre de Pistes (stems) :</label>
-<input type="number" id="nombrePistes" name="nombrePistes"><br>
+            var devis = (duree * 10) + (nombrePistes * 5) + (qualiteMix * 20) + (tarifGenre * duree);
 
-<label for="qualiteMix">Qualité de Mix Demandée :</label>
-<select id="qualiteMix" name="qualiteMix">
-    <option value="1">Basse</option>
-    <option value="2">Moyenne</option>
-    <option value="3">Haute</option>
-</select><br>
+            if (pisteVoix === "oui") {
+                devis += devis * 0.2; // Supplément de 20% si des voix sont à mixer
+                devis += (nombreChanteurs * 12.5 * duree); // Supplément par chanteur par minute
+            }
 
-<label for="pisteVoix">Piste Voix :</label>
-<select id="pisteVoix" name="pisteVoix">
-    <option value="non">Non</option>
-    <option value="oui">Oui</option>
-</select><br>
+            // Affichez le devis en temps réel
+            document.getElementById("devis").textContent = devis + " €";
 
-<div id="ligneNombreChanteurs">
-    <label for="nombreChanteurs">Nombre de Chanteurs :</label>
-    <input type="number" id="nombreChanteurs" name="nombreChanteurs"><br>
-</div>
+            // Masquez ou affichez la ligne "Nombre de Chanteurs" en fonction de "Piste Voix"
+            var ligneNombreChanteurs = document.getElementById("ligneNombreChanteurs");
+            if (pisteVoix === "non") {
+                ligneNombreChanteurs.style.display = "none";
+            } else {
+                ligneNombreChanteurs.style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Formulaire de Commande de Mix</h1>
+    <form>
+        <label for="genre">Genre de Musique :</label>
+        <select id="genre" name="genre">
+            <option value="rock">Rock</option>
+            <option value="pop">Pop</option>
+            <option value="hip-hop">Hip-Hop</option>
+            <option value="acoustique">Acoustique</option>
+            <option value="electro">Electro</option>
+            <option value="autre">Autre</option>
+            <!-- Ajoutez d'autres genres -->
+        </select><br>
 
-<p>Devis : <span id="devis">0 €</span></p>
+        <label for="duree">Durée du Morceau (en minutes) :</label>
+        <input type="number" id="duree" name="duree"><br>
 
-<button type="button" onclick="calculerDevis()">Calculer Devis</button>
+        <label for="nombrePistes">Nombre de Pistes (stems) :</label>
+        <input type="number" id="nombrePistes" name="nombrePistes"><br>
+
+        <label for="qualiteMix">Qualité de Mix Demandée :</label>
+        <select id="qualiteMix" name="qualiteMix">
+            <option value="1">Basse</option>
+            <option value="2">Moyenne</option>
+            <option value="3">Haute</option>
+        </select><br>
+
+        <label for="pisteVoix">Piste Voix :</label>
+        <select id="pisteVoix" name="pisteVoix">
+            <option value="non">Non</option>
+            <option value="oui">Oui</option>
+        </select><br>
+
+        <div id="ligneNombreChanteurs">
+            <label for="nombreChanteurs">Nombre de Chanteurs :</label>
+            <input type="number" id="nombreChanteurs" name="nombreChanteurs"><br>
+        </div>
+
+        <p>Devis : <span id="devis">0 €</span></p>
+
+        <button type="button" onclick="calculerDevis()">Calculer Devis</button>
+    </form>
  </section>
     <section id="contact">
         <h2>Contact</h2>
