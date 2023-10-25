@@ -13,22 +13,21 @@
             var nombrePistes = parseInt(document.getElementById("nombrePistes").value);
             var qualiteMix = parseFloat(document.getElementById("qualiteMix").value);
             var pisteVoix = document.getElementById("pisteVoix").value;
-            var nombreChanteurs = parseInt(document.getElementById("nombreChanteurs").value);
 
             // Effectuez le calcul du devis en fonction des paramètres
-            var tarifGenre = 15; // Tarif par défaut pour les genres autres que Pop et Hip Hop
+            var tarifGenre = 15; // Tarif par défaut
             if (genre === "pop" || genre === "hip-hop") {
-                tarifGenre = 12; // Tarif réduit pour Pop et Hip Hop (20% de réduction)
+                tarifGenre -= (5 * duree); // Réduction de 5 fois la durée pour Pop et Hip Hop
             }
 
             var devis = (duree * 10) + (nombrePistes * 5) + (qualiteMix * 20) + (tarifGenre * duree);
 
             if (pisteVoix === "oui") {
                 devis += devis * 0.2; // Supplément de 20% si des voix sont à mixer
-                // Vérifiez si le nombre de chanteurs est supérieur à 0
-                if (nombreChanteurs > 0) {
-                    devis += (nombreChanteurs * 12.5 * duree); // Supplément par chanteur par minute
-                }
+                // Affichez la ligne "nombre de chanteurs"
+                document.getElementById("ligneNombreChanteurs").style.display = "block";
+            } else {
+                document.getElementById("ligneNombreChanteurs").style.display = "none";
             }
 
             // Affichez le devis en temps réel
@@ -70,7 +69,7 @@
         <h2>Formulaire de Commande de Mix</h2>
         <form>
             <label for="genre">Genre de Musique :</label>
-            <select id="genre" name="genre">
+            <select id="genre" name="genre" onchange="calculerDevis()">
                 <option value="rock">Rock</option>
                 <option value="pop">Pop</option>
                 <option value="hip-hop">Hip-Hop</option>
@@ -87,14 +86,14 @@
             <input type="number" id="nombrePistes" name="nombrePistes"><br>
 
             <label for="qualiteMix">Qualité de Mix Demandée :</label>
-            <select id="qualiteMix" name="qualiteMix">
+            <select id="qualiteMix" name="qualiteMix" onchange="calculerDevis()">
                 <option value="1">Basse</option>
                 <option value="2">Moyenne</option>
                 <option value="3">Haute</option>
             </select><br>
 
             <label for="pisteVoix">Piste Voix :</label>
-            <select id="pisteVoix" name="pisteVoix">
+            <select id="pisteVoix" name="pisteVoix" onchange="calculerDevis()">
                 <option value="non">Non</option>
                 <option value="oui">Oui</option>
             </select><br>
