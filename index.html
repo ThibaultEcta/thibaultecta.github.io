@@ -6,6 +6,17 @@
     <title>Thibault_Ecta - Musicien, Ingénieur du Son, Compositeur</title>
     <link rel="stylesheet" href="styles.css">
     <script>
+        function gererAffichageChanteurs() {
+            var pisteVoix = document.getElementById("pisteVoix").value;
+            var ligneNombreChanteurs = document.getElementById("ligneNombreChanteurs");
+
+            if (pisteVoix === "oui") {
+                ligneNombreChanteurs.style.display = "block";
+            } else {
+                ligneNombreChanteurs.style.display = "none";
+            }
+        }
+
         function calculerDevis() {
             // Obtenez les valeurs sélectionnées par l'utilisateur
             var genre = document.getElementById("genre").value;
@@ -21,7 +32,7 @@
                 tarifGenre = 0.15; 
             }
 
-            var devis = (duree * 2) + (nombrePistes * 2) + (qualiteMix * 3 * duree) + (tarifGenre * duree);
+            var devis = (duree * 2) + (nombrePistes * 2) + (qualiteMix * 5 * duree) + (tarifGenre * duree);
 
             if (pisteVoix === "oui") {
                 document.getElementById("ligneNombreChanteurs").style.display = "block";
@@ -32,7 +43,7 @@
             } else {
                 document.getElementById("ligneNombreChanteurs").style.display = "none";
             }
-            
+
             // Affichez le devis en temps réel
             document.getElementById("devis").textContent = devis + " €";
         }
@@ -72,7 +83,7 @@
         <h2>Formulaire de Commande de Mix</h2>
         <form>
             <label for="genre">Genre de Musique :</label>
-            <select id="genre" name="genre" onchange="calculerDevis()">
+            <select id="genre" name="genre">
                 <option value="rock">Rock</option>
                 <option value="pop">Pop</option>
                 <option value="hip-hop">Hip-Hop</option>
@@ -89,14 +100,14 @@
             <input type="number" id="nombrePistes" name="nombrePistes"><br>
 
             <label for="qualiteMix">Qualité de Mix Demandée :</label>
-            <select id="qualiteMix" name="qualiteMix" onchange="calculerDevis()">
+            <select id="qualiteMix" name="qualiteMix">
                 <option value="1">Basse</option>
                 <option value="2">Moyenne</option>
                 <option value="3">Haute</option>
             </select><br>
 
             <label for="pisteVoix">Piste Voix :</label>
-            <select id="pisteVoix" name="pisteVoix" onchange="calculerDevis()">
+            <select id="pisteVoix" name "pisteVoix" onchange="gererAffichageChanteurs()">
                 <option value="non">Non</option>
                 <option value="oui">Oui</option>
             </select><br>
