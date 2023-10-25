@@ -112,12 +112,13 @@
             <option value="oui">Oui</option>
         </select><br>
 
-        <div id="ligneNombreChanteurs">
+        <div id="ligneNombreChanteurs" style="display:none;">
             <label for="nombreChanteurs">Nombre de Chanteurs :</label>
-            <input type="number" id="nombreChanteurs" name="nombreChanteurs"><br>
+            <input type="number" id="nombreChanteurs" name="nombreChanteurs" min="1"><br>
         </div>
 
         <p>Devis : <span id="devis">0 €</span></p>
+        <button type="button" onclick="calculerDevis()">Calculer Devis</button>
     </form>
 	</section>
     <section id="contact">
