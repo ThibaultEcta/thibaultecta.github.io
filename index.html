@@ -46,6 +46,17 @@
 
             // Affichez le devis en temps réel
             document.getElementById("devis").textContent = devis + " €";
+
+            // Afficher le bouton "Envoyer mon devis à Thibault_Ecta"
+            document.getElementById("boutonEnvoyerDevis").style.display = "block";
+        }
+
+        function envoyerDevis() {
+            // Récupérez le devis calculé
+            var devis = document.getElementById("devis").textContent;
+            // Ouvrez un nouvel e-mail prérempli avec le destinataire et le sujet
+            var emailLink = "mailto:thibaultgirard297@gmail.com?subject=Devis Musique&body=Devis%20calculé%3A%20" + devis;
+            window.open(emailLink, "_blank"); // Ouvre un nouvel onglet
         }
     </script>
 </head>
@@ -83,7 +94,7 @@
         <h2>Formulaire de Commande de Mix</h2>
         <form>
             <label for="genre">Genre de Musique :</label>
-            <select id="genre" name="genre">
+            <select id="genre" name="genre" onchange="calculerDevis()">
                 <option value="rock">Rock</option>
                 <option value="pop">Pop</option>
                 <option value="hip-hop">Hip-Hop</option>
@@ -107,7 +118,7 @@
             </select><br>
 
             <label for="pisteVoix">Piste Voix :</label>
-            <select id="pisteVoix" name "pisteVoix" onchange="gererAffichageChanteurs()">
+            <select id="pisteVoix" name="pisteVoix" onchange="gererAffichageChanteurs()">
                 <option value="non">Non</option>
                 <option value="oui">Oui</option>
             </select><br>
@@ -119,6 +130,7 @@
 
             <p>Devis : <span id="devis">0 €</span></p>
             <button type="button" onclick="calculerDevis()">Calculer le Devis</button>
+            <button id="boutonEnvoyerDevis" style="display: none;" onclick="envoyerDevis()">Envoyer mon devis à Thibault_Ecta</button> <!-- Bouton pour envoyer le devis par e-mail -->
         </form>
     </section>
     <section id="contact">
