@@ -52,6 +52,8 @@
             var ligneNombreChanteurs = document.getElementById("ligneNombreChanteurs");
             if (pisteVoix === "non") {
                 ligneNombreChanteurs.style.display = "none";
+                // Réinitialisez le champ "Nombre de Chanteurs" à 0
+                document.getElementById("nombreChanteurs").value = 0;
             } else {
                 ligneNombreChanteurs.style.display = "block";
             }
@@ -66,13 +68,18 @@
 
             if (pisteVoix === "oui") {
                 devis += devis * 0.2; // Supplément de 20% si des voix sont à mixer
+                // Vérifiez si le nombre de chanteurs est supérieur à 0
                 if (nombreChanteurs > 0) {
                     devis += (nombreChanteurs * 12.5 * duree); // Supplément par chanteur par minute
                 }
             }
 
             // Affichez le devis en temps réel
-            document.getElementById("devis").textContent = devis + " €";
+            if (!isNaN(devis)) {
+                document.getElementById("devis").textContent = devis + " €";
+            } else {
+                document.getElementById("devis").textContent = "0 €";
+            }
         }
     </script>
 </head>
@@ -104,20 +111,19 @@
         </select><br>
 
         <label for="pisteVoix">Piste Voix :</label>
-        <select id="pisteVoix" name="pisteVoix">
+        <select id="pisteVoix" name="pisteVoix" onchange="calculerDevis()">
             <option value="non">Non</option>
             <option value="oui">Oui</option>
         </select><br>
 
-        <div id="ligneNombreChanteurs">
+        <div id="ligneNombreChanteurs" style="display:none;">
             <label for="nombreChanteurs">Nombre de Chanteurs :</label>
             <input type="number" id="nombreChanteurs" name="nombreChanteurs"><br>
         </div>
 
         <p>Devis : <span id="devis">0 €</span></p>
-
-        <button type="button" onclick="calculerDevis()">Calculer Devis</button>
     </form>
+	</section>
     <section id="contact">
         <h2>Contact</h2>
         <p>N'hésitez pas à me contacter pour discuter de vos besoins musicaux. Je suis disponible pour des collaborations et des projets musicaux passionnants.</p>
