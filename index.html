@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thibault_Ecta - Musicien, Ingénieur du Son, Compositeur</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function calculerDevis() {
+            // Obtenez les valeurs sélectionnées par l'utilisateur
+            var genre = document.getElementById("genre").value;
+            var duree = parseFloat(document.getElementById("duree").value);
+            var nombrePistes = parseInt(document.getElementById("nombrePistes").value);
+            var qualiteMix = parseFloat(document.getElementById("qualiteMix").value);
+            var pisteVoix = document.getElementById("pisteVoix").value;
+            var nombreChanteurs = parseInt(document.getElementById("nombreChanteurs").value);
+
+            // Effectuez le calcul du devis en fonction des paramètres
+            var tarifGenre = 15; // Tarif par défaut pour les genres autres que Pop et Hip Hop
+            if (genre === "pop" || genre === "hip-hop") {
+                tarifGenre = 12; // Tarif réduit pour Pop et Hip Hop (20% de réduction)
+            }
+
+            var devis = (duree * 10) + (nombrePistes * 5) + (qualiteMix * 20) + (tarifGenre * duree);
+
+            if (pisteVoix === "oui") {
+                devis += devis * 0.2; // Supplément de 20% si des voix sont à mixer
+                // Vérifiez si le nombre de chanteurs est supérieur à 0
+                if (nombreChanteurs > 0) {
+                    devis += (nombreChanteurs * 12.5 * duree); // Supplément par chanteur par minute
+                }
+            }
+
+            // Affichez le devis en temps réel
+            document.getElementById("devis").textContent = isNaN(devis) ? "0 €" : devis + " €";
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -85,7 +115,7 @@
         <!-- Ajoutez d'autres informations de contact ici. -->
     </section>
     <footer>
-       <p>&copy; 2023 Thibault_Ecta</p>
+        <p>&copy; 2023 Thibault_Ecta</p>
     </footer>
 </body>
 </html>
