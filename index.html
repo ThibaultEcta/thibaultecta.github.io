@@ -36,6 +36,7 @@
         <h2>Portfolio</h2>
         <!-- Ajoutez des exemples de votre travail ici, avec des liens vers des échantillons ou des démonstrations. -->
     </section>
+	<!DOCTYPE html>
 	<section>
     <title>Formulaire de Commande de Mix</title>
     <script>
@@ -45,14 +46,28 @@
             var duree = parseFloat(document.getElementById("duree").value);
             var nombrePistes = parseInt(document.getElementById("nombrePistes").value);
             var qualiteMix = parseFloat(document.getElementById("qualiteMix").value);
+            var pisteVoix = document.getElementById("pisteVoix").value;
+            var nombreChanteurs = parseInt(document.getElementById("nombreChanteurs").value);
 
-            // Effectuez le calcul du devis
-            var devis = (duree * 10) + (nombrePistes * 5) + (qualiteMix * 20);
+            // Effectuez le calcul du devis en fonction des paramètres
+            var tarifGenre = 15; // Tarif par défaut pour les genres autres que Pop et Hip Hop
+            if (genre === "Pop" || genre === "Hip-Hop") {
+                tarifGenre = 10; // Tarif réduit pour Pop et Hip Hop
+            }
+
+            var devis = (duree * 10) + (nombrePistes * 5) + (qualiteMix * 20) + (tarifGenre * duree);
+            
+            if (pisteVoix === "oui") {
+                devis += devis * 0.2; // Supplément de 20% si des voix sont à mixer
+                devis += nombreChanteurs * 30; // Supplément par chanteur
+            }
 
             // Affichez le devis en temps réel
             document.getElementById("devis").textContent = devis + " €";
         }
     </script>
+</head>
+<body>
     <h1>Formulaire de Commande de Mix</h1>
     <form>
         <label for="genre">Genre de Musique :</label>
@@ -60,6 +75,9 @@
             <option value="rock">Rock</option>
             <option value="pop">Pop</option>
             <option value="hip-hop">Hip-Hop</option>
+            <option value="acoustique">Acoustique</option>
+            <option value="electro">Electro</option>
+            <option value="autre">Autre</option>
             <!-- Ajoutez d'autres genres -->
         </select><br>
 
@@ -76,14 +94,20 @@
             <option value="3">Haute</option>
         </select><br>
 
-        <label for="dateButoir">Date Butoir Maximale :</label>
-        <input type="date" id="dateButoir" name="dateButoir"><br>
+        <label for="pisteVoix">Piste Voix :</label>
+        <select id="pisteVoix" name="pisteVoix">
+            <option value="non">Non</option>
+            <option value="oui">Oui</option>
+        </select><br>
+
+        <label for="nombreChanteurs">Nombre de Chanteurs :</label>
+        <input type="number" id="nombreChanteurs" name="nombreChanteurs"><br>
 
         <p>Devis : <span id="devis">0 €</span></p>
 
         <button type="button" onclick="calculerDevis()">Calculer Devis</button>
     </form>
-	</section>
+ </section>
     <section id="contact">
         <h2>Contact</h2>
         <p>N'hésitez pas à me contacter pour discuter de vos besoins musicaux. Je suis disponible pour des collaborations et des projets musicaux passionnants.</p>
