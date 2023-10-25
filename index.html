@@ -48,6 +48,14 @@
             var pisteVoix = document.getElementById("pisteVoix").value;
             var nombreChanteurs = parseInt(document.getElementById("nombreChanteurs").value);
 
+            // Masquez ou affichez la ligne "Nombre de Chanteurs" en fonction de "Piste Voix"
+            var ligneNombreChanteurs = document.getElementById("ligneNombreChanteurs");
+            if (pisteVoix === "non") {
+                ligneNombreChanteurs.style.display = "none";
+            } else {
+                ligneNombreChanteurs.style.display = "block";
+            }
+
             // Effectuez le calcul du devis en fonction des paramètres
             var tarifGenre = 15; // Tarif par défaut pour les genres autres que Pop et Hip Hop
             if (genre === "Pop" || genre === "Hip-Hop") {
@@ -58,19 +66,13 @@
 
             if (pisteVoix === "oui") {
                 devis += devis * 0.2; // Supplément de 20% si des voix sont à mixer
-                devis += (nombreChanteurs * 12.5 * duree); // Supplément par chanteur par minute
+                if (nombreChanteurs > 0) {
+                    devis += (nombreChanteurs * 12.5 * duree); // Supplément par chanteur par minute
+                }
             }
 
             // Affichez le devis en temps réel
             document.getElementById("devis").textContent = devis + " €";
-
-            // Masquez ou affichez la ligne "Nombre de Chanteurs" en fonction de "Piste Voix"
-            var ligneNombreChanteurs = document.getElementById("ligneNombreChanteurs");
-            if (pisteVoix === "non") {
-                ligneNombreChanteurs.style.display = "none";
-            } else {
-                ligneNombreChanteurs.style.display = "block";
-            }
         }
     </script>
 </head>
@@ -116,7 +118,6 @@
 
         <button type="button" onclick="calculerDevis()">Calculer Devis</button>
     </form>
- </section>
     <section id="contact">
         <h2>Contact</h2>
         <p>N'hésitez pas à me contacter pour discuter de vos besoins musicaux. Je suis disponible pour des collaborations et des projets musicaux passionnants.</p>
