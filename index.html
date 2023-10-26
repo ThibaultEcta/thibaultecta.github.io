@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thibault_Ecta - Musicien, Ingénieur du Son, Compositeur</title>
     <link rel="stylesheet" href="styles.css">
+	<style>
+    /* Divisez la page en deux colonnes */
+    .columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 1;
+    margin: 5px;
+}
+
+/* Style spécifique pour la colonne de gauche */
+.column-left {
+    width: 50%;
+    padding: 10px;
+}
+
+/* Style spécifique pour la colonne de droite */
+.column-right {
+    width: 50%;
+    padding: 10px;
+</style>
     <script>
         function gererAffichageChanteurs() {
             var pisteVoix = document.getElementById("pisteVoix").value;
@@ -73,11 +96,10 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <section id="apropos">
-        <h2>À Propos de Moi</h2>
-        <p>Musicien, ingénieur du son et compositeur avec une passion pour la création musicale. Je mets en œuvre mon expertise pour produire des sons de haute qualité et des compositions originales.</p>
-    </section>
-    <section id="services">
+	<div class="row">
+    <div class="columns">
+	<div class="column">
+	<section id="services">
         <h2>Services</h2>
         <ul>
             <li>Enregistrement audio</li>
@@ -86,10 +108,12 @@
             <!-- Ajoutez d'autres services -->
         </ul>
     </section>
-    <section id="portfolio">
-        <h2>Portfolio</h2>
-        <!-- Ajoutez des exemples de votre travail ici, avec des liens vers des échantillons ou des démonstrations. -->
+	<section id="apropos">
+        <h2>À Propos de Moi</h2>
+        <p>Musicien, ingénieur du son et compositeur avec une passion pour la création musicale. Je mets en œuvre mon expertise pour produire des sons de haute qualité et des compositions originales.</p>
     </section>
+       	</div>
+	<div class="column">
     <section id="commande">
         <h2>Formulaire de Commande de Mix</h2>
         <form>
@@ -133,6 +157,13 @@
             <button id="boutonEnvoyerDevis" style="display: none;" onclick="envoyerDevis()">Envoyer mon devis à Thibault_Ecta</button> <!-- Bouton pour envoyer le devis par e-mail -->
         </form>
     </section>
+     <section id="portfolio">
+        <h2>Portfolio</h2>
+        <!-- Ajoutez des exemples de votre travail ici, avec des liens vers des échantillons ou des démonstrations. -->
+    </section>
+	</div>
+	
+	</div>
     <section id="contact">
         <h2>Contact</h2>
         <p>N'hésitez pas à me contacter pour discuter de vos besoins musicaux. Je suis disponible pour des collaborations et des projets musicaux passionnants.</p>

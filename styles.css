@@ -1,4 +1,14 @@
 /* Réinitialisation des styles et styles de base */
+.columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    flex-basis: calc(50% - 10px);
+    box-sizing: border-box;
+}
+
 body, h1, h2, p {
     margin: 0;
     padding: 0;
