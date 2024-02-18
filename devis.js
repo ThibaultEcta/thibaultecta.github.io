@@ -81,8 +81,16 @@ function calculerPrix() {
 function calculerDevis() {
   // Affichage du prix en temps réel
   const prix = calculerPrix();
+
+  // Mise en forme pour un prix en EUR et pour le langage du navigateur
+  const formatter = new Intl.NumberFormat(undefined, {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 0,
+  });
+
   document.getElementById("devis").style.display = "block";
-  document.getElementById("prix").textContent = prix + " €";
+  document.getElementById("prix").textContent = formatter.format(prix);
 }
 
 function envoyerDevis(e) {
