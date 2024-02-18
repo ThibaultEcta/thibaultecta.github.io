@@ -42,20 +42,21 @@
 
     <section>
       <h2>Demander un devis</h2>
-      <form onchange="calculerDevis()">
+      <form onchange="calculerDevis()" onsubmit="envoyerDevis(event)">
         <label for="genre">Genre</label>
         <select id="genre" name="genre">
-          <option value="rock">Rock</option>
-          <option value="pop">Pop</option>
-          <option value="hip-hop">Hip-Hop</option>
-          <option value="acoustique">Acoustique</option>
-          <option value="electro">Electro</option>
-          <option value="autre">Autre</option>
-          <!-- Ajoutez d'autres genres --></select
-        ><br />
+          <option>Sélectionner un genre...</option>
+        </select>
 
         <label for="duree">Durée du morceau (en minutes)</label>
-        <input type="number" id="duree" name="duree" min="1" value="1" /><br />
+        <input
+          type="number"
+          id="duree"
+          name="duree"
+          min="1"
+          step="0.5"
+          value="1"
+        />
 
         <label for="nombrePistes">Nombre de pistes (stems)</label>
         <input
@@ -63,15 +64,12 @@
           id="nombrePistes"
           name="nombrePistes"
           min="1"
+          step="1"
           value="1"
-        /><br />
+        />
 
         <label for="qualiteMix">Qualité de mix demandée</label>
-        <select id="qualiteMix" name="qualiteMix">
-          <option value="1">Basse</option>
-          <option value="2">Moyenne</option>
-          <option value="3">Haute</option></select
-        ><br />
+        <select id="qualiteMix" name="qualiteMix"></select>
 
         <label for="pisteVoix">Piste voix</label>
         <select
@@ -80,8 +78,8 @@
           onchange="gererAffichageChanteurs()"
         >
           <option value="non">Non</option>
-          <option value="oui">Oui</option></select
-        ><br />
+          <option value="oui">Oui</option>
+        </select>
 
         <div id="ligneNombreChanteurs" style="display: none">
           <label for="nombreChanteurs">Nombre de chanteurs</label>
@@ -90,17 +88,16 @@
             id="nombreChanteurs"
             name="nombreChanteurs"
             min="1"
+            step="1"
             value="1"
-          /><br />
+          />
         </div>
 
         <div id="devis" style="display: none">
           <p>Prix estimé : <span id="prix">0 €</span></p>
         </div>
 
-        <button id="boutonEnvoyerDevis" onclick="envoyerDevis()">
-          Envoyer mon devis
-        </button>
+        <button>Envoyer mon devis</button>
       </form>
     </section>
 
