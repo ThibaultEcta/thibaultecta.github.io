@@ -11,6 +11,7 @@
     <div class="album-cover-background">
       <img src="images/solo-run-album-cover.jpeg" />
     </div>
+
     <header>
       <img
         class="profile-picture"
@@ -28,7 +29,8 @@
         de haute qualité et des compositions originales.
       </p>
     </header>
-    <section id="services">
+
+    <section>
       <h2>Services</h2>
       <ul>
         <li>Enregistrement audio</li>
@@ -37,10 +39,11 @@
         <!-- Ajoutez d'autres services -->
       </ul>
     </section>
-    <section id="commande">
-      <h2>Formulaire de Commande de Mix</h2>
-      <form>
-        <label for="genre">Genre de Musique :</label>
+
+    <section>
+      <h2>Demander un devis</h2>
+      <form onchange="calculerDevis()">
+        <label for="genre">Genre</label>
         <select id="genre" name="genre">
           <option value="rock">Rock</option>
           <option value="pop">Pop</option>
@@ -51,20 +54,26 @@
           <!-- Ajoutez d'autres genres --></select
         ><br />
 
-        <label for="duree">Durée du Morceau (en minutes) :</label>
-        <input type="number" id="duree" name="duree" /><br />
+        <label for="duree">Durée du morceau (en minutes)</label>
+        <input type="number" id="duree" name="duree" min="1" value="1" /><br />
 
-        <label for="nombrePistes">Nombre de Pistes (stems) :</label>
-        <input type="number" id="nombrePistes" name="nombrePistes" /><br />
+        <label for="nombrePistes">Nombre de pistes (stems)</label>
+        <input
+          type="number"
+          id="nombrePistes"
+          name="nombrePistes"
+          min="1"
+          value="1"
+        /><br />
 
-        <label for="qualiteMix">Qualité de Mix Demandée :</label>
+        <label for="qualiteMix">Qualité de mix demandée</label>
         <select id="qualiteMix" name="qualiteMix">
           <option value="1">Basse</option>
           <option value="2">Moyenne</option>
           <option value="3">Haute</option></select
         ><br />
 
-        <label for="pisteVoix">Piste Voix :</label>
+        <label for="pisteVoix">Piste voix</label>
         <select
           id="pisteVoix"
           name="pisteVoix"
@@ -75,27 +84,23 @@
         ><br />
 
         <div id="ligneNombreChanteurs" style="display: none">
-          <label for="nombreChanteurs">Nombre de Chanteurs :</label>
+          <label for="nombreChanteurs">Nombre de chanteurs</label>
           <input
             type="number"
             id="nombreChanteurs"
             name="nombreChanteurs"
             min="1"
+            value="1"
           /><br />
         </div>
 
-        <p>Devis : <span id="devis">0 €</span></p>
-        <button type="button" onclick="calculerDevis()">
-          Calculer le Devis
+        <div id="devis" style="display: none">
+          <p>Prix estimé : <span id="prix">0 €</span></p>
+        </div>
+
+        <button id="boutonEnvoyerDevis" onclick="envoyerDevis()">
+          Envoyer mon devis
         </button>
-        <button
-          id="boutonEnvoyerDevis"
-          style="display: none"
-          onclick="envoyerDevis()"
-        >
-          Envoyer mon devis à Thibault_Ecta
-        </button>
-        <!-- Bouton pour envoyer le devis par e-mail -->
       </form>
     </section>
 
