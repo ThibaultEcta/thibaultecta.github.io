@@ -39,21 +39,6 @@ const genres = [
   },
 ];
 
-const qualites = [
-  {
-    id: "1",
-    label: "Basse",
-  },
-  {
-    id: "2",
-    label: "Moyenne",
-  },
-  {
-    id: "3",
-    label: "Haute",
-  },
-];
-
 function gererAffichageChanteurs() {
   const pisteVoix = document.getElementById("pisteVoix").value;
   const ligneNombreChanteurs = document.getElementById("ligneNombreChanteurs");
@@ -127,14 +112,6 @@ genres.forEach((genre) => {
   option.value = genre.id;
   option.textContent = genre.label;
   genreSelect.appendChild(option);
-});
-
-const qualiteSelect = document.getElementById("qualiteMix");
-qualites.forEach((qualite) => {
-  const option = document.createElement("option");
-  option.value = qualite.id;
-  option.textContent = qualite.label;
-  qualiteSelect.appendChild(option);
 });
 
 const params = new URLSearchParams(window.location.search);
