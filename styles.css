@@ -1,6 +1,7 @@
 body,
 h1,
 h2,
+h3,
 ul,
 p {
   margin: 0;
@@ -18,6 +19,10 @@ body {
   font-family: "Lato", helvetica, arial;
 }
 
+img {
+  max-width: 170px;
+}
+
 header {
   margin-top: 16vh;
   margin-bottom: 3vh;
@@ -32,7 +37,6 @@ header {
     margin-top: -40%;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
     border-radius: 10px;
-    max-width: 170px;
   }
 
   .location {
@@ -52,14 +56,6 @@ header {
   }
 }
 
-section {
-  margin-bottom: 3vh;
-  border-radius: 10px;
-  background-color: #fff;
-  padding: 30px;
-  width: 100%;
-}
-
 h1 {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -67,8 +63,64 @@ h1 {
 }
 
 h2 {
+  align-self: flex-start;
+  margin-top: 10px;
   margin-bottom: 20px;
+  color: white;
   font-size: 24px;
+}
+
+section {
+  margin-bottom: 3vh;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 30px;
+  width: 100%;
+
+  h2 {
+    margin-top: 0;
+    color: black;
+  }
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 900;
+  src: url(https://encore.scdn.co/fonts/CircularSpotify-UI-Latin-Black-765ca9bf8d2f11afb11dc49884b779ca.woff2);
+  font-family: spotify-circular;
+}
+
+.album {
+  .title {
+    display: flex;
+
+    img {
+      width: 128px;
+      height: 128px;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      margin-left: 16px;
+
+      h3 {
+        margin-top: 16px;
+        margin-bottom: 8px;
+        color: #333333;
+        font-weight: 900;
+        font-size: 50px;
+        font-family: "spotify-circular";
+      }
+    }
+  }
+
+  iframe {
+    margin-top: 24px;
+    aspect-ratio: 16/9;
+    width: 100%;
+  }
 }
 
 ul {
