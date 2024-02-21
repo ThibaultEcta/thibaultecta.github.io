@@ -97,22 +97,82 @@ function calculerDevis() {
  * Exemple: https://thibaultecta.github.io/?genre=pop&duree=3&nombrePistes=2&qualiteMix=2&pisteVoix=oui&nombreChanteurs=3
  */
 function genererLienDevis() {
-  const form = document.getElementById("devis");
+  const form = document.getElementById("devis-formulaire");
+  const hasDisabledOptionSelected = [...form].some(
+    (champ) => champ.selectedOptions?.[0].disabled,
+  );
+
+  if (hasDisabledOptionSelected) {
+    return;
+  }
+
   const params = new URLSearchParams(new FormData(form));
 
   return window.location.origin + "?" + params.toString();
 }
 
+function montrerMessage(message) {
+  const snackbar = document.getElementById("snackbar");
+  snackbar.textContent = message;
+
+  // Afficher le snackbar
+  snackbar.classList.add("show");
+
+  // Après 3 seconds, supprimer la classe "show" pour cacher le snackbar
+  setTimeout(() => snackbar.classList.remove("show"), 3000);
+}
+
+/**
+ * Copié de https://stackoverflow.com/a/65996386/3970387
+ */
+async function copyToClipboard(textToCopy) {
+  // Navigator clipboard api needs a secure context (https)
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(textToCopy);
+  } else {
+    // Use the 'out of viewport hidden text area' trick
+    const textArea = document.createElement("textarea");
+    textArea.value = textToCopy;
+
+    // Move textarea out of the viewport so it's not visible
+    textArea.style.position = "absolute";
+    textArea.style.left = "-999999px";
+
+    document.body.prepend(textArea);
+    textArea.select();
+
+    try {
+      document.execCommand("copy");
+    } catch (error) {
+      alert(error.message);
+    } finally {
+      textArea.remove();
+    }
+  }
+}
+
 function copierLienDevis() {
   const url = genererLienDevis();
 
+  if (!url) {
+    montrerMessage("Veuillez remplir tous les champs du devis.");
+    return;
+  }
+
   // Copie dans le presse-papier
-  navigator.clipboard.writeText(url);
+  copyToClipboard(url);
+
+  montrerMessage("Lien copié");
 }
 
 function envoyerDevis() {
   const prix = calculerPrix();
   const url = genererLienDevis();
+
+  if (!url) {
+    montrerMessage("Veuillez remplir tous les champs du devis.");
+    return;
+  }
 
   // prettier-ignore
   const emailBody =
@@ -155,4 +215,14 @@ if (params.size > 0) {
 
   gererAffichageChanteurs();
   calculerDevis();
+
+  // Empêcher le navigateur de se souvenir de la position du scroll après un rechargement de la page.
+  history.scrollRestoration = "manual";
+
+  // Scroll vers le devis, car il est pré-rempli
+  document.getElementById("section-devis").scrollIntoView({
+    // Animation de scroll
+    behavior: "smooth",
+    block: "nearest",
+  });
 }

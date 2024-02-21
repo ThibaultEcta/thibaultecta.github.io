@@ -12,6 +12,8 @@
       <img src="images/solo-run-album-cover.jpeg" />
     </div>
 
+    <div id="snackbar">Texte par défaut</div>
+
     <header>
       <img
         class="profile-picture"
@@ -40,12 +42,12 @@
       </ul>
     </section>
 
-    <section>
+    <section id="section-devis">
       <h2>Demander un devis</h2>
-      <form id="devis" onchange="calculerDevis()">
+      <form id="devis-formulaire" onchange="calculerDevis()">
         <label for="genre">Genre</label>
         <select id="genre" name="genre">
-          <option>Sélectionner un genre...</option>
+          <option disabled selected>Sélectionner un genre...</option>
         </select>
 
         <label for="duree">Durée du morceau (en minutes)</label>
