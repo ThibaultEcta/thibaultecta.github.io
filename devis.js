@@ -84,8 +84,8 @@ function calculerDevis() {
 
   // Mise en forme pour un prix en EUR et pour le langage du navigateur
   const formatter = new Intl.NumberFormat(undefined, {
-    style: 'currency',
-    currency: 'EUR',
+    style: "currency",
+    currency: "EUR",
     minimumFractionDigits: 0,
   });
 
@@ -94,10 +94,13 @@ function calculerDevis() {
 }
 
 function envoyerDevis(e) {
+  // Empêcher le rechargement de la page (et tout comportement par défaut d'un submit de formulaire)
   e.preventDefault();
 
+  // Exemple: genre=rock&duree=3&nombrePistes=3&qualiteMix=2&pisteVoix=oui&nombreChanteurs=3
   const form = e.target;
   const params = new URLSearchParams(new FormData(form));
+
   const url = form.action + "?" + params.toString();
 
   const prix = calculerPrix();
@@ -126,11 +129,21 @@ const params = new URLSearchParams(window.location.search);
 
 // Pré-remplissage des champs avec les paramètres de l'URL
 if (params.size > 0) {
-  document.getElementById("genre").value = params.get("genre");
-  document.getElementById("duree").value = params.get("duree");
-  document.getElementById("nombrePistes").value = params.get("nombrePistes");
-  document.getElementById("qualiteMix").value = params.get("qualiteMix");
-  document.getElementById("pisteVoix").value = params.get("pisteVoix");
-  document.getElementById("nombreChanteurs").value =
-    params.get("nombreChanteurs");
+  const champs = [
+    "genre",
+    "duree",
+    "nombrePistes",
+    "qualiteMix",
+    "pisteVoix",
+    "nombreChanteurs",
+  ];
+
+  champs.forEach((champ) => {
+    if (params.has(champ)) {
+      document.getElementById(champ).value = params.get(champ);
+    }
+  });
+
+  gererAffichageChanteurs();
+  calculerDevis();
 }
