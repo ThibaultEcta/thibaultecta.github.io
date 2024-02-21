@@ -42,7 +42,7 @@
 
     <section>
       <h2>Demander un devis</h2>
-      <form onchange="calculerDevis()" onsubmit="envoyerDevis(event)">
+      <form id="devis" onchange="calculerDevis()">
         <label for="genre">Genre</label>
         <select id="genre" name="genre">
           <option>Sélectionner un genre...</option>
@@ -101,7 +101,14 @@
           <p>Prix estimé : <span id="prix">0 €</span></p>
         </div>
 
-        <button>Envoyer mon devis</button>
+        <div class="horizontal">
+          <button type="button" onclick="copierLienDevis()">
+            Copier le lien
+          </button>
+          <button type="button" onclick="envoyerDevis()">
+            Envoyer mon devis
+          </button>
+        </div>
       </form>
     </section>
 

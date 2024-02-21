@@ -163,31 +163,38 @@ footer {
   font-weight: 800;
 }
 
-input[type="number"],
-select {
-  box-sizing: border-box;
-  margin: 8px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 6px 6px;
-  width: 100%;
-}
+form {
+  input[type="number"],
+  select {
+    box-sizing: border-box;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 6px;
+    width: 100%;
+  }
 
-button {
-  display: block;
-  cursor: pointer;
-  margin: 8px auto;
-  border: none;
-  border-radius: 10px;
-  background-color: #1ed760;
-  padding: 14px 20px;
-  width: 200px;
-  color: white;
-  font-weight: bold;
-}
+  button {
+    display: block;
+    cursor: pointer;
+    margin: 8px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1ed760;
+    padding: 14px 20px;
+    width: 200px;
+    color: white;
+    font-weight: bold;
+  }
 
-button:hover {
-  background-color: #1fdf64;
+  button:hover {
+    background-color: #1fdf64;
+  }
+
+  .horizontal {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 /* Media queries pour la mise en page responsive */
@@ -203,7 +210,7 @@ button:hover {
   h1 {
     font-size: 1.5em;
   }
-  
+
   h2 {
     font-size: 1.3em;
   }

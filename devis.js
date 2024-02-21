@@ -93,17 +93,26 @@ function calculerDevis() {
   document.getElementById("prix").textContent = formatter.format(prix);
 }
 
-function envoyerDevis(e) {
-  // Empêcher le rechargement de la page (et tout comportement par défaut d'un submit de formulaire)
-  e.preventDefault();
-
-  // Exemple: genre=rock&duree=3&nombrePistes=3&qualiteMix=2&pisteVoix=oui&nombreChanteurs=3
-  const form = e.target;
+/**
+ * Exemple: https://thibaultecta.github.io/?genre=pop&duree=3&nombrePistes=2&qualiteMix=2&pisteVoix=oui&nombreChanteurs=3
+ */
+function genererLienDevis() {
+  const form = document.getElementById("devis");
   const params = new URLSearchParams(new FormData(form));
 
-  const url = form.action + "?" + params.toString();
+  return window.location.origin + "?" + params.toString();
+}
 
+function copierLienDevis() {
+  const url = genererLienDevis();
+
+  // Copie dans le presse-papier
+  navigator.clipboard.writeText(url);
+}
+
+function envoyerDevis() {
   const prix = calculerPrix();
+  const url = genererLienDevis();
 
   // prettier-ignore
   const emailBody =
