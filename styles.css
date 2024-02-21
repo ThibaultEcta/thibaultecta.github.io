@@ -197,9 +197,55 @@ form {
   }
 }
 
+/* Copié de https://www.w3schools.com/howto/howto_js_snackbar.asp */
+#snackbar {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  visibility: hidden;
+  z-index: 1;
+  border-radius: 2px;
+  background-color: #333;
+  padding: 16px;
+  min-width: 250px;
+  color: #fff;
+  text-align: center;
+}
+
+#snackbar.show {
+  visibility: visible;
+  animation:
+    fadein 0.5s,
+    fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
 /* Media queries pour la mise en page responsive */
 @media (max-width: 768px) {
   header {
+    margin-top: 10vh;
     padding: 20px;
   }
 
