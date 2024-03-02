@@ -48,183 +48,184 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="devis.js" defer></script>
   </head>
+
   <body>
-    <div class="album-cover-background">
-      <img src="images/solo-run-album-cover.jpeg" />
-    </div>
-
-    <div id="snackbar">Texte par défaut</div>
-
-    <header>
-      <img
-        class="profile-picture"
-        src="images/profile-picture.jpg"
-        alt="Photo de profil"
-      />
-      <h1>Thibault_Ecta</h1>
-      <p class="location">
-        <img src="icons/location-dot.svg" />
-        <span>Rennes, France</span>
-      </p>
-      <p>
-        Musicien, ingénieur du son et compositeur avec une passion pour la
-        création musicale. Je mets en œuvre mon expertise pour produire des sons
-        de haute qualité et des compositions originales.
-      </p>
-    </header>
-
-    <section>
-      <h2>Services</h2>
-      <ul>
-        <li>Enregistrement audio</li>
-        <li>Mixage et mastering</li>
-        <li>Composition musicale</li>
-        <!-- Ajoutez d'autres services -->
-      </ul>
-    </section>
-
-    <section id="section-devis">
-      <h2>Demander un devis</h2>
-      <form id="devis-formulaire" onchange="calculerDevis()">
-        <label for="genre">Genre</label>
-        <select id="genre" name="genre">
-          <option disabled selected>Sélectionner un genre...</option>
-        </select>
-
-        <label for="duree">Durée du morceau (en minutes)</label>
-        <input
-          type="number"
-          id="duree"
-          name="duree"
-          min="1"
-          step="0.5"
-          value="1"
+    <div class="container">
+      <header>
+        <img
+          class="profile-picture"
+          src="images/profile-picture.jpg"
+          alt="Photo de profil"
         />
+        <h1>Thibault_Ecta</h1>
+        <p class="location">
+          <img src="icons/location-dot.svg" />
+          <span>Rennes, France</span>
+        </p>
+        <p>
+          Musicien, ingénieur du son et compositeur avec une passion pour la
+          création musicale. Je mets en œuvre mon expertise pour produire des
+          sons de haute qualité et des compositions originales.
+        </p>
+      </header>
 
-        <label for="nombrePistes">Nombre de pistes (stems)</label>
-        <input
-          type="number"
-          id="nombrePistes"
-          name="nombrePistes"
-          min="1"
-          step="1"
-          value="1"
-        />
+      <section>
+        <h2>Services</h2>
+        <ul>
+          <li>Enregistrement audio</li>
+          <li>Mixage et mastering</li>
+          <li>Composition musicale</li>
+          <!-- Ajoutez d'autres services -->
+        </ul>
+      </section>
 
-        <label for="qualiteMix">Qualité de mix demandée</label>
-        <select id="qualiteMix" name="qualiteMix">
-          <option value="1">Basse</option>
-          <option value="2">Moyenne</option>
-          <option value="3">Haute</option>
-        </select>
+      <section id="section-devis">
+        <h2>Demander un devis</h2>
+        <form id="devis-formulaire" onchange="calculerDevis()">
+          <label for="genre">Genre</label>
+          <select id="genre" name="genre">
+            <option disabled selected>Sélectionner un genre...</option>
+          </select>
 
-        <label for="pisteVoix">Piste voix</label>
-        <select
-          id="pisteVoix"
-          name="pisteVoix"
-          onchange="gererAffichageChanteurs()"
-        >
-          <option value="non">Non</option>
-          <option value="oui">Oui</option>
-        </select>
-
-        <div id="ligneNombreChanteurs" style="display: none">
-          <label for="nombreChanteurs">Nombre de chanteurs</label>
+          <label for="duree">Durée du morceau (en minutes)</label>
           <input
             type="number"
-            id="nombreChanteurs"
-            name="nombreChanteurs"
+            id="duree"
+            name="duree"
+            min="1"
+            step="0.5"
+            value="1"
+          />
+
+          <label for="nombrePistes">Nombre de pistes (stems)</label>
+          <input
+            type="number"
+            id="nombrePistes"
+            name="nombrePistes"
             min="1"
             step="1"
             value="1"
           />
+
+          <label for="qualiteMix">Qualité de mix demandée</label>
+          <select id="qualiteMix" name="qualiteMix">
+            <option value="1">Basse</option>
+            <option value="2">Moyenne</option>
+            <option value="3">Haute</option>
+          </select>
+
+          <label for="pisteVoix">Piste voix</label>
+          <select
+            id="pisteVoix"
+            name="pisteVoix"
+            onchange="gererAffichageChanteurs()"
+          >
+            <option value="non">Non</option>
+            <option value="oui">Oui</option>
+          </select>
+
+          <div id="ligneNombreChanteurs" style="display: none">
+            <label for="nombreChanteurs">Nombre de chanteurs</label>
+            <input
+              type="number"
+              id="nombreChanteurs"
+              name="nombreChanteurs"
+              min="1"
+              step="1"
+              value="1"
+            />
+          </div>
+
+          <div id="devis" style="display: none">
+            <p>Prix estimé : <span id="prix">0 €</span></p>
+          </div>
+
+          <div class="horizontal">
+            <button type="button" onclick="copierLienDevis()">
+              Copier le lien
+            </button>
+            <button type="button" onclick="envoyerDevis()">
+              Envoyer mon devis
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Portfolio sections -->
+      <h2>Portfolio</h2>
+      <section class="album">
+        <div class="title">
+          <img src="images/solo-run-album-cover.jpeg" />
+          <div>
+            <p>Album</p>
+            <h3>SOLO RUN</h3>
+            <p>2023 • 11 titres, 28 min 32 sec</p>
+          </div>
         </div>
 
-        <div id="devis" style="display: none">
-          <p>Prix estimé : <span id="prix">0 €</span></p>
+        <iframe
+          src="https://www.youtube.com/embed/hAxlTw4SSFw?si=V1H8D2tJSmkQ7vZr"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </section>
+      <section class="album">
+        <div class="title">
+          <img src="images/ma-vie-x3.jpeg" />
+          <div>
+            <p>Album</p>
+            <h3>Ma vie x3</h3>
+            <p>2022 • 13 titres, 26 min 7 sec</p>
+          </div>
         </div>
 
-        <div class="horizontal">
-          <button type="button" onclick="copierLienDevis()">
-            Copier le lien
-          </button>
-          <button type="button" onclick="envoyerDevis()">
-            Envoyer mon devis
-          </button>
+        <iframe
+          src="https://www.youtube.com/embed/6EysATZhvLY?si=y-ASC9Tom1gxdBXR"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </section>
+      <section class="album">
+        <div class="title">
+          <img src="images/birth.jpeg" />
+          <div>
+            <p>Album</p>
+            <h3>BIRTH</h3>
+            <p>2020 • 9 titres, 24 min 11 sec</p>
+          </div>
         </div>
-      </form>
-    </section>
 
-    <!-- Portfolio sections -->
-    <h2>Portfolio</h2>
-    <section class="album">
-      <div class="title">
-        <img src="images/solo-run-album-cover.jpeg" />
-        <div>
-          <p>Album</p>
-          <h3>SOLO RUN</h3>
-          <p>2023 • 11 titres, 28 min 32 sec</p>
-        </div>
-      </div>
+        <iframe
+          src="https://www.youtube.com/embed/wthcSXfMkPk?si=8VnJ-JDbp2Yh1zXS"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </section>
 
-      <iframe
-        src="https://www.youtube.com/embed/hAxlTw4SSFw?si=V1H8D2tJSmkQ7vZr"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
-    </section>
-    <section class="album">
-      <div class="title">
-        <img src="images/ma-vie-x3.jpeg" />
-        <div>
-          <p>Album</p>
-          <h3>Ma vie x3</h3>
-          <p>2022 • 13 titres, 26 min 7 sec</p>
-        </div>
-      </div>
-
-      <iframe
-        src="https://www.youtube.com/embed/6EysATZhvLY?si=y-ASC9Tom1gxdBXR"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
-    </section>
-    <section class="album">
-      <div class="title">
-        <img src="images/birth.jpeg" />
-        <div>
-          <p>Album</p>
-          <h3>BIRTH</h3>
-          <p>2020 • 9 titres, 24 min 11 sec</p>
-        </div>
-      </div>
-
-      <iframe
-        src="https://www.youtube.com/embed/wthcSXfMkPk?si=8VnJ-JDbp2Yh1zXS"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
-    </section>
-
-    <section id="contact">
       <h2>Contact</h2>
-      <p>
-        N'hésitez pas à me contacter pour discuter de vos besoins musicaux. Je
-        suis disponible pour des collaborations et des projets musicaux
-        passionnants.
-      </p>
-      <br />
-      <a href="mailto: contact@thibault-ecta.com">contact@thibault-ecta.com</a>
-    </section>
+      <section>
+        <p>
+          N'hésitez pas à me contacter pour discuter de vos besoins musicaux. Je
+          suis disponible pour des collaborations et des projets musicaux
+          passionnants.
+        </p>
+        <br />
+        <a href="mailto: contact@thibault-ecta.com"
+          >contact@thibault-ecta.com</a
+        >
+      </section>
 
-    <footer>
-      <p>&copy; 2024 Thibault_Ecta</p>
-    </footer>
+      <footer>
+        <p>&copy; 2024 Thibault_Ecta</p>
+      </footer>
+
+      <div id="snackbar">Texte par défaut</div>
+    </div>
   </body>
 </html>
