@@ -8,6 +8,13 @@ p {
   padding: 0;
 }
 
+@font-face {
+  font-style: normal;
+  font-weight: normal;
+  src: url(./fonts/Oswald-Regular.ttf);
+  font-family: oswald;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -16,7 +23,7 @@ body {
   padding: 2vh 4vh;
   max-width: 660px;
   line-height: 1.5rem;
-  font-family: "Lato", helvetica, arial;
+  font-family: oswald, helvetica, arial;
 }
 
 img {
@@ -85,8 +92,8 @@ section {
 
 @font-face {
   font-style: normal;
-  font-weight: 900;
-  src: url(https://encore.scdn.co/fonts/CircularSpotify-UI-Latin-Black-765ca9bf8d2f11afb11dc49884b779ca.woff2);
+  font-weight: bold;
+  src: url(./fonts/CircularSpotify-UI-Latin.woff2);
   font-family: spotify-circular;
 }
 
