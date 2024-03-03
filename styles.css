@@ -9,10 +9,15 @@ p {
   letter-spacing: .01rem;
 }
 
+li {
+    font-size: 16px; /* Taille de police plus petite */
+}
+
+}
+
 .small {
-    font-size: 13px; /* Taille de police plus petite */
+    font-size: 14px; /* Taille de police plus petite */
     line-height: 2; /* Espacement entre les lignes */
-    /* Autres styles personnalisés si nécessaire */
 }
 
 @font-face {
@@ -84,7 +89,7 @@ h2 {
   margin-top: 10px;
   margin-bottom: 20px;
   color: white;
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .container > h2 {
