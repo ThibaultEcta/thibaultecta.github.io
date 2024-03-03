@@ -10,8 +10,8 @@ p {
 }
 
 .small {
-    font-size: 10px; /* Taille de police plus petite */
-    line-height: 1.2; /* Espacement entre les lignes */
+    font-size: 13px; /* Taille de police plus petite */
+    line-height: 2; /* Espacement entre les lignes */
     /* Autres styles personnalisés si nécessaire */
 }
 
