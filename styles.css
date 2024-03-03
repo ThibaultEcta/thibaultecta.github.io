@@ -9,6 +9,12 @@ p {
   letter-spacing: .01rem;
 }
 
+.small {
+    font-size: 10px; /* Taille de police plus petite */
+    line-height: 1.2; /* Espacement entre les lignes */
+    /* Autres styles personnalisés si nécessaire */
+}
+
 @font-face {
   font-style: normal;
   font-weight: normal;
