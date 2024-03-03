@@ -6,7 +6,7 @@ ul,
 p {
   margin: 0;
   padding: 0;
-  letter-spacing: .1rem;
+  letter-spacing: .01rem;
 }
 
 @font-face {
@@ -186,7 +186,7 @@ form {
     }
 
     button:hover {
-      background-color: #1fdf64;
+      background-color: #e46dff;
     }
   }
 }
