@@ -6,6 +6,7 @@ ul,
 p {
   margin: 0;
   padding: 0;
+  letter-spacing: .2rem;
 }
 
 @font-face {
@@ -177,7 +178,7 @@ form {
       margin: 8px;
       border: none;
       border-radius: 10px;
-      background-color: #1ed760;
+      background-color: #b61ad9;
       padding: 14px 20px;
       max-width: 200px;
       color: white;
